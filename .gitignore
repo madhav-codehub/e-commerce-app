@@ -5,7 +5,7 @@ target/
 !**/src/test/**/target/
 .gitattributes
 .mvn
-.env
+docker/.env
 
 mvnw.cmd
 mvnw
