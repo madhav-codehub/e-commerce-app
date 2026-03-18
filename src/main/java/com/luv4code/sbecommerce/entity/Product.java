@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.Type;
 import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
@@ -17,7 +18,7 @@ import java.util.UUID;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(columnDefinition = "uuid", nullable = false, updatable = false)
+    @Column(columnDefinition = "BINARY(16)", nullable = false, updatable = false)
     private UUID id;
     private String name;
     private String description;
@@ -32,9 +33,9 @@ public class Product {
     private String color;
     private String size;
 
-    @Column(name = "category_id")
-    @JdbcTypeCode(SqlTypes.CHAR)      // Stores as CHAR(36) — equivalent to old UUIDCharType
-    private UUID categoryId;
+    @Column(name = "category_id", columnDefinition = "BINARY(16)")
+    @JdbcTypeCode(SqlTypes.BINARY)
+    protected UUID categoryId;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)

@@ -18,15 +18,15 @@ import java.util.UUID;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(columnDefinition = "uuid", nullable = false, updatable = false)
+    @Column(columnDefinition = "BINARY(16)", nullable = false, updatable = false)
     private UUID id;
 
     private String address;
 
     private double total;
 
-    @Column(name = "user_id")
-    @JdbcTypeCode(SqlTypes.CHAR)
+    @Column(name = "user_id", columnDefinition = "BINARY(16)")
+    @JdbcTypeCode(SqlTypes.BINARY)
     private UUID userId;
 
     private String username;

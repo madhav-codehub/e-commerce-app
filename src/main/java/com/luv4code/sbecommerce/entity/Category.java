@@ -17,13 +17,13 @@ import java.util.UUID;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(columnDefinition = "uuid", nullable = false, updatable = false)
+    @Column(columnDefinition = "BINARY(16)", nullable = false, updatable = false)
     private UUID id;
 
     private String name;
 
-    @Column(name = "parent_id")
-    @JdbcTypeCode(SqlTypes.CHAR)
+    @Column(name = "parent_id", columnDefinition = "BINARY(16)")
+    @JdbcTypeCode(SqlTypes.BINARY)
     private UUID parentId;
 
 }
